@@ -19,9 +19,9 @@ modelpath ='modelreal.h5'
 TRAIN_DIR = 'data/pt'
 IMAGE_UPLOADS ="/"
 
-application = Flask(__name__)
+app = Flask(__name__)
 # Enable CORS
-CORS(application)
+CORS(app)
 application.config["IMAGE_UPLOADS"] ='data/pt/'
 IMG_SIZE = 100
 data = ['hat', 'headphone', 'laptop','bag','handbag','wallet','watch']
@@ -52,7 +52,7 @@ def create_train_data():
 	shuffle(training_data)
 	return training_data
 
-@application.route("/predict", methods=["POST"])
+@app.route("/predict", methods=["POST"])
 def predict():
 	if request.method == "POST":
 		picinput = request.files['img']##รับรูปจากฟอร์มในหน้าเว็ป recive img from <html>
@@ -75,4 +75,4 @@ def predict():
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-    application.run(debug=False)
+    app.run(debug=False)
