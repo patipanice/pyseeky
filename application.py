@@ -13,9 +13,7 @@ import cv2
 import numpy as np
 from random import shuffle
 from keras.models import load_model
-
 import imageio
-
 import tensorflow as tf
 modelpath ='modelreal.h5'
 TRAIN_DIR = 'data/pt'
@@ -77,4 +75,4 @@ def predict():
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-    application.run()
+    application.run(debug=False)
