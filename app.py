@@ -66,5 +66,5 @@ def predict():
 		return data[predicteds]
 		
 # run the app.
-if __name__ == "__main__":
-	app.run()
+#if __name__ == "__main__":
+#	app.run()
