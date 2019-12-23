@@ -21,8 +21,7 @@ modelpath ='modelreal.h5'
 TRAIN_DIR = 'data/pt'
 IMAGE_UPLOADS ="/"
 
-STATIC_DIR = os.path.abspath('static')
-application = Flask(__name__, static_folder=STATIC_DIR)
+application = Flask(__name__)
 # Enable CORS
 CORS(application)
 application.config["IMAGE_UPLOADS"] ='data/pt/'
@@ -59,24 +58,7 @@ def create_train_data():
 def predict():
 	if request.method == "POST":
 		picinput = request.files['img']##รับรูปจากฟอร์มในหน้าเว็ป recive img from <html>
-		
-		picinput.save(os.path.join(application.config["IMAGE_UPLOADS"],img))
-		#id = 'longgong' # Get user id เข้ามาเก็บไว้ตรงนี้ จะได้ตั้งชื่อรูปแบบไม่ซ้ำกันได้
-		'''--------------ส่งรูปไปลบ BG------------
-		response = requests.post(
-    	'https://api.remove.bg/v1.0/removebg',
-    	files={'image_file':picinput}, #สังเกตุที่ data เป็นการดึงมาจากฟอร์มใส่ในนี้เลย ไม่ใส่ ' ' ครอบไว้
-    	data={'size': 'auto'},
-    	headers={'X-Api-Key': 'RGhvvuPjKwbnceGfBPiJsrum'},
-    	)
-		if response.status_code == requests.codes.ok:
-			with open(id+'.png', 'wb') as out: #จากตรงนี้คืรูปที่ออกมา
-					toai = out.write(response.content)
-					return redirect('/')
-		'''
-		
-		#--------------------
-		
+		picinput.save(os.path.join(application.config["IMAGE_UPLOADS"],img))	
 		train_data = create_train_data()
 		train = train_data[:1]
 		
@@ -89,11 +71,8 @@ def predict():
 		predicted 
 		predicteds =np.argmax(predicted)
 		print(data[predicteds])
-		
 		return data[predicteds]
-		#return redirect("/loaded")
 		
-
 # run the app.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
