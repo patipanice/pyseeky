@@ -3,13 +3,8 @@ from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 import os 
 import requests
-#import input_image # import ai มาใช้ในไฟล์นี้
 import os.path as path
 import cv2
-#import pandas as pd
-#import matplotlib.pyplot as plt
-#get_ipython().run_line_magic('matplotlib', 'inline')
-#from tqdm import tqdm
 import numpy as np
 from random import shuffle
 from keras.models import load_model
@@ -22,7 +17,7 @@ IMAGE_UPLOADS ="/"
 app = Flask(__name__)
 # Enable CORS
 CORS(app)
-application.config["IMAGE_UPLOADS"] ='data/pt/'
+app.config["IMAGE_UPLOADS"] ='data/pt/'
 IMG_SIZE = 100
 data = ['hat', 'headphone', 'laptop','bag','handbag','wallet','watch']
 img = '1_eiei.png'
@@ -48,7 +43,6 @@ def create_train_data():
 	img_data=cv2.imread(path,cv2.IMREAD_GRAYSCALE)
 	img_data=cv2.resize(img_data,(IMG_SIZE,IMG_SIZE))
 	training_data.append([np.array(img_data),create_label(img)])
-     #np.save('train_dara.npy',training_data)"""
 	shuffle(training_data)
 	return training_data
 
@@ -56,7 +50,7 @@ def create_train_data():
 def predict():
 	if request.method == "POST":
 		picinput = request.files['img']##รับรูปจากฟอร์มในหน้าเว็ป recive img from <html>
-		picinput.save(os.path.join(application.config["IMAGE_UPLOADS"],img))	
+		picinput.save(os.path.join(app.config["IMAGE_UPLOADS"],img))	
 		train_data = create_train_data()
 		train = train_data[:1]
 		
