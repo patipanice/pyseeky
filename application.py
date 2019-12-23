@@ -103,7 +103,7 @@ def sendhtml():
 def loadedhtml ():
 	return render_template("loaded.html")"""
 # run the app.
-if __name__ == "__main__":
+#if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-    application.run(debug=True)
+   # application.run(debug=True)
