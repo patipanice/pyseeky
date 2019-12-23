@@ -94,14 +94,6 @@ def predict():
 		#return redirect("/loaded")
 		
 
-@application.route("/", methods=["GET"]) #อันนี้เอาไว้เทสให้มันมีหน้าในการ post ข้อูลเข้ามาา
-def sendhtml():	
-	return render_template("searching.php")
-	#send_from_directory(application.config['IMAGE_UPLOADS'],data.filename)
-
-"""@application.route("/loaded",methods=["GET"])
-def loadedhtml ():
-	return render_template("loaded.html")"""
 # run the app.
 #if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
