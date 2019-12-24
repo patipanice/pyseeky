@@ -12,7 +12,7 @@ gast==0.2.2
 google-auth==1.10.0
 google-auth-oauthlib==0.4.1
 google-pasta==0.1.8
-gunicorn
+gunicorn==19.9.0
 grpcio==1.26.0
 h5py==2.10.0
 idna==2.8
@@ -46,5 +46,5 @@ tensorflow
 tensorflow-estimator==1.15.1
 termcolor==1.1.0
 urllib3==1.25.7
-Werkzeug==0.16.0
+Werkzeug==0.15.5
 wrapt==1.11.2
