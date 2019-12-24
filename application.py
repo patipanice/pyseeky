@@ -49,14 +49,13 @@ def create_train_data():
 @app.route("/predict", methods=["POST"])
 def predict():
 	if request.method == "POST":
-		picinput = request.files['img']##รับรูปจากฟอร์มในหน้าเว็ป recive img from <html>
+		picinput = request.files['img']
 		picinput.save(os.path.join(app.config["IMAGE_UPLOADS"],img))	
 		train_data = create_train_data()
 		train = train_data[:1]
 		
 		X_train = np.array([i[0] for i in train]).reshape(-1,100,100,1)
 		Y_train = np.array([i[1] for i in train])
-		#plt.imshow(X_train[1].reshape(IMG_SIZE,IMG_SIZE),cmap='gist_gray')
 		
 		load_naja =  load_model(modelpath)
 		predicted = load_naja.predict(X_train)
